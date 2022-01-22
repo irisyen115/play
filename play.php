@@ -7,9 +7,9 @@
 </head>
 <body>
 <?php
-function my_echo($content){
-    echo $content."</br>";
-}
+    function my_echo($content){
+        echo $content."</br>";
+    }
 
 
     if (isset($_SESSION['answer'])) {
