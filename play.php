@@ -16,7 +16,7 @@
         // 玩到一半的階段
         $guess = $_GET['guess'];
         $_SESSION['times']=$_SESSION['times']+1;
-        
+        echo "<a href=\"replay.php\">重來一局</a>";
 
         my_echo($guess);
 
