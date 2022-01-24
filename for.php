@@ -11,8 +11,15 @@
     echo "請輸入2~9的其中一個數字"."<br/>";
     if ($multiplier>=2 and $multiplier<=9){
         for($i=1;$i<1000;$i++){
-            echo "$multiplier*$i=".$multiplier*$i."<br/>";
+            $quotient=$multiplier*$i;
+            echo "<ul>
+            <li> $multiplier*$i=$quotient </li>
+            </ul>"."<br/>"; 
+            if ($i % 10 ==0){
+                echo "<br/>";
+            }  
         }
+       
     } else{
         echo "您輸入的數字不在範圍內";
     }
