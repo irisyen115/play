@@ -6,6 +6,8 @@
 <form action="leap_year.php">
 <input type="number" name="year" placeholder="請輸入年份">
 <input type="submit">
+<!--已知1900年1月1日為星期一-->
+
 <?php
 $year=$_GET['year'];
 if($year %400 == 0 or ($year %4 == 0 and $year %100 !=0)){

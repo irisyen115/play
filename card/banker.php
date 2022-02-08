@@ -11,25 +11,20 @@ function calculate_score($cards) {
     $s = 0;
     $length = count($cards);
     for($i = 0 ; $i < $length; $i++) {
-        if ($cards[$i] > 10) {
+        $fp = ($cards[$i] % 13) + 1; 
+        if ($fp > 10) {
             $s = $s + 0.5;
         } else {
-            $s = $s +$cards[$i];
+            $s = $s +$fp;
         }
     }
 
     return $s;
 }
 
-$_SESSION['banker_points'] = array();
+
 //將card存入session之後洗牌
 shuffle($_SESSION['card']);
-//接著抽出第一章牌
-
-
-
-//如果加起來沒超過十點半就繼續發牌，剛好等於十點半就贏了這局，超過十點半就輸了這局
-
 $banker_points = 0;
 $in_hands = array();//手裡的所有牌
 $player_points = calculate_score($_SESSION['points']);
@@ -37,12 +32,33 @@ $player_points = calculate_score($_SESSION['points']);
 while ($player_points >= $banker_points and $banker_points < 10.5 and count($in_hands) != 5) {
     
     // print_r($_SESSION);
-    $bl = $_SESSION['card'][$_SESSION['pos']] % 13 + 1;
+    $bl = $_SESSION['card'][$_SESSION['pos']];
     array_push($in_hands,$bl);
-    echo $bl."<br/>";
+
     $banker_points = calculate_score($in_hands);
+
     $_SESSION['pos'] = $_SESSION['pos'] + 1;
-} 
+}
+
+for ($i = 0;$i < count($in_hands);$i++){
+        
+    $p = ($in_hands[$i] % 13) +1;
+    if (floor($in_hands[$i] / 13) == 0){
+        echo "黑桃".$p."<br/>";
+    }
+
+    elseif (floor($in_hands[$i] /13) == 1){
+        echo "紅心".$p."<br/>";
+    }
+    
+    elseif (floor($in_hands[$i]/13) == 2){
+        echo "方塊".$p."<br/>";
+    }
+    
+    elseif (floor($in_hands[$i]/13) == 3){
+        echo "梅花".$p."<br/>";
+    } 
+}
 
 if ($banker_points > 10.5) {
     echo "很遺憾,你輸了";
@@ -53,7 +69,7 @@ if ($banker_points > 10.5) {
 } 
 
 echo "Total points: ". $banker_points."<br/>";
-echo implode(",", $in_hands);
+// echo implode(",", $in_hands);
 
 ?>
 </body>

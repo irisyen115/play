@@ -9,6 +9,7 @@
         <td>西元：<input type="number" name="year"></td>
         <td>月份：<input type="number" name="month"></td>
         <td>日期：<input type="number" name="date"></td>
+    </tr>
 </table>
 <?php
 $year=$_GET['year'];
@@ -29,9 +30,9 @@ function is_leap_year($y) {
 for ($i=1971;$i<$year+1;$i++){
     
     if (is_leap_year($i-1)){
-        $weekday=$weekday+2;    
+        $weekday=$weekday+366;    
     }else{
-        $weekday=$weekday+1;
+        $weekday=$weekday+365;
     }
 }
 
@@ -47,6 +48,10 @@ for ($i=1;$i<$month;$i++){
 // 最後再加上剩下的天數
 $weekday=$weekday+$date-1;
 echo $weekday % 7 ;
+//印出日曆
+
+
+
 ?>
 <input type="submit">
 </form>
