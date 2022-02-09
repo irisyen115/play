@@ -1,0 +1,18 @@
+.list{
+    display: flex;
+    justify-content: center;
+}
+
+.product{
+    flex: none; width:200px ;margin:10px;
+    background-color: #ffcccc;
+}
+@media (max-width:1250px) {
+    /*螢幕小於1250px時，套用這個CSS設定*/
+    .list{
+        flex-wrap: wrap;
+    }
+    .product{
+        width: 45%;
+    }
+}
